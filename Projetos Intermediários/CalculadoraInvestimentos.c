@@ -34,41 +34,68 @@ int main(){
 }
 
 void cdb(){
-    int cambio;
+    int cambio = 0;
     double rendimento, aporte, imposto;
     
     printf("Digite 1 para Real, 2 para Dólar; \n");
         scanf("%d", &cambio);
         
-        if (cambio != 1 && cambio != 2){
-            printf("Incorreto, digite 1 para Real ou 2 para Dólar; ");
+            
+    while (cambio != 1 && cambio != 2){
+        printf("Incorreto, digite 1 para Real ou 2 para Dólar; ");
+            scanf("%d", &cambio);
+            
+        if (cambio == 1){
+            break;
         }
-        
+    }
+ 
     printf("Quanto pretende aportar?\n");
         scanf("%lf", &aporte);
     printf("Qual é o rendimento deste investimento?\n");
         scanf("%lf", &rendimento);
     printf("Qual é o imposto sobre o investimento?\n");
         scanf("%lf", &imposto);
-        
+    
     double taxaAnual = rendimento / 100.0;
     double taxaMensal = taxaAnual / 12.0;
     double taxaDiaria = taxaAnual / 360.0;
     double aliquota = imposto / 100.0;
-    
+
     double brutoAnual = aporte * taxaAnual;
     double brutoMensal = aporte * taxaMensal;
     double brutoDiario = aporte * taxaDiaria;
-    
+
     double liquidoAnual = brutoAnual - (aporte * (taxaAnual * aliquota * 1.0));
     double liquidoMensal = brutoMensal - (aporte * (taxaMensal * aliquota * 1.0));
     double liquidoDiario = brutoDiario - (aporte * (taxaDiaria * aliquota * 1.0));
     
-    printf("--------------------------------------------------------------------------");
-    printf("\nPor dia, esse dinheiro renderá; \nBruto: %.2f\nLíquido: %.2f\n", brutoDiario, liquidoDiario);
-    printf("\nPor Mês, esse dinheiro renderá; \nBruto: %.2f\nLíquido: %.2f\n", brutoMensal, liquidoMensal);
-    printf("\nPor Ano, esse dinheiro renderá; \nBruto: %.2f\nLíquido: %.2f\n", brutoAnual, liquidoAnual);
-    printf("--------------------------------------------------------------------------\n\n");
+ 
+    if (cambio == 1) {
+        
+        printf("--------------------------------------------------------------------------");
+        printf("\nPor dia, esse dinheiro renderá; \nBruto: R$%.2f\nLíquido: R$%.2f\n", brutoDiario, liquidoDiario);
+        printf("\nPor Mês, esse dinheiro renderá; \nBruto: R$%.2f\nLíquido: R$%.2f\n", brutoMensal, liquidoMensal);
+        printf("\nPor Ano, esse dinheiro renderá; \nBruto: R$%.2f\nLíquido: R$%.2f\n", brutoAnual, liquidoAnual);
+        printf("--------------------------------------------------------------------------\n\n"); 
+    }else {
+        
+        brutoAnual = brutoAnual * 51.4 / 100;
+        brutoMensal = brutoMensal * 51.4 / 100;
+        brutoDiario = brutoDiario * 51.4 / 100;
+        
+        liquidoAnual = liquidoAnual * 51.14 / 100;
+        liquidoMensal = liquidoMensal * 51.14 / 100;
+        liquidoDiario = liquidoDiario * 51.14 / 100;
+        
+        printf("--------------------------------------------------------------------------");
+        printf("\nPor dia, esse dinheiro renderá; \nBruto: U$%.2f\nLíquido: U$%.2f\n", brutoDiario, liquidoDiario);
+        printf("\nPor Mês, esse dinheiro renderá; \nBruto: U$%.2f\nLíquido: U$%.2f\n", brutoMensal, liquidoMensal);
+        printf("\nPor Ano, esse dinheiro renderá; \nBruto: U$%.2f\nLíquido: U$%.2f\n", brutoAnual, liquidoAnual);
+        printf("--------------------------------------------------------------------------\n\n");
+    }
+    
+    
     
     
     
