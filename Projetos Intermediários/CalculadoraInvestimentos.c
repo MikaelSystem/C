@@ -54,33 +54,27 @@ void cdb(){
     double taxaAnual = rendimento / 100.0;
     double taxaMensal = taxaAnual / 12.0;
     double taxaDiaria = taxaAnual / 360.0;
+    double aliquota = imposto / 100.0;
     
-    double brutoAnual = taxaAnual * aporte;
-    double brutoMensal = taxaMensal * aporte;
-    double brutoDiario = taxaDiaria * aporte;
+    double brutoAnual = aporte * taxaAnual;
+    double brutoMensal = aporte * taxaMensal;
+    double brutoDiario = aporte * taxaDiaria;
     
-    double liquidoAnual = brutoAnual * (imposto * 1.0);
-    double liquidoMensal = brutoMensal * (imposto * 1.0); //necessita corrigir
-    double liquidoDiario = brutoDiario * (imposto * 1.0);
-    
+    double liquidoAnual = brutoAnual - (aporte * (taxaAnual * aliquota * 1.0));
+    double liquidoMensal = brutoMensal - (aporte * (taxaMensal * aliquota * 1.0));
+    double liquidoDiario = brutoDiario - (aporte * (taxaDiaria * aliquota * 1.0));
     
     printf("--------------------------------------------------------------------------");
-    printf("\nPor dia, esse dinheiro dará; \nBruto: %.2f\nLíquido: %.2f\n", brutoDiario, liquidoDiario);
-    printf("\nPor Mês, esse dinheiro dará; \nBruto: %.2f\nLíquido: %.2f\n", brutoMensal, liquidoMensal);
-    printf("\nPor Ano, esse dinheiro dará; \nBruto: %.2f\nLíquido: %.2f\n", brutoAnual, liquidoAnual);
+    printf("\nPor dia, esse dinheiro renderá; \nBruto: %.2f\nLíquido: %.2f\n", brutoDiario, liquidoDiario);
+    printf("\nPor Mês, esse dinheiro renderá; \nBruto: %.2f\nLíquido: %.2f\n", brutoMensal, liquidoMensal);
+    printf("\nPor Ano, esse dinheiro renderá; \nBruto: %.2f\nLíquido: %.2f\n", brutoAnual, liquidoAnual);
     printf("--------------------------------------------------------------------------\n\n");
     
+    
+    
+    
+    
 }
-
-
-
-
-
-
-
-
-
-
 
 
 
