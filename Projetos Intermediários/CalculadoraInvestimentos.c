@@ -17,10 +17,10 @@ int main(){
     while(menu){
 
         printf("|========HubInvest========|\n");
-        printf("* [1] - CDB/CD\n");
-        printf("* [2] - LCI/LCA\n");
-        printf("* [3] - Conversão\n");
-        printf("* [0] - Sair do Programa\n");
+        printf("* [1] - CDB/CD            *\n");
+        printf("* [2] - LCI/LCA           *\n");
+        printf("* [3] - CÂMBIO (U$/R$)    *\n");
+        printf("* [0] - Sair do Programa  *\n");
         printf("|=========================|\n");
             scanf("%d", &opcao);
 
@@ -60,14 +60,18 @@ int main(){
 void cdb(){
     int cambio = 0;
     double rendimento, aporte, imposto;
-
-    printf("Digite 1 para Real, 2 para Dólar; \n");
+    
+    printf("|----------------------------------|\n");
+    printf("- Digite 1 para Real, 2 para Dólar; \n");
+    printf("|----------------------------------|\n");
         scanf("%d", &cambio);
 
     system("clear");
 
     while (cambio != 1 && cambio != 2){
-        printf("Incorreto, digite 1 para Real ou 2 para Dólar; ");
+        printf("|-----------------------------------------------|\n");
+        printf("- Incorreto, digite 1 para Real ou 2 para Dólar; \n");
+        printf("|-----------------------------------------------|\n");
             scanf("%d", &cambio);
            
             system("clear");
@@ -76,18 +80,76 @@ void cdb(){
             break;
         }
     }
-
-    printf("Quanto pretende aportar?\n");
+    
+    printf("|-------------------------|\n");
+    printf("- Quanto pretende aportar?\n");
+    printf("|-------------------------|\n");
         scanf("%lf", &aporte);
+        
+        while (aporte == 0) {
+                    printf("|-----------------------------|\n");
+                    printf("[!] Você tem que aportar algo!\n");
+                    printf("|-----------------------------|\n");
+                        scanf("%lf", &aporte);
+                        
+                    if (aporte > 0) {
+                        break;
+                    }
+                }
+        
+        while(aporte < 0) {
+            printf("|--------------------------------------------------------------|\n");
+            printf("- [!] Não é possível aportar dívidas!, Quanto pretende aportar?\n");
+            printf("|--------------------------------------------------------------|\n");
+                scanf("%lf", &aporte);
+                
+                if (aporte > 0) {
+                    break;
+                }
+        }
+        
         system("clear");
        
-    printf("Qual é o rendimento deste investimento?\n");
+    printf("|----------------------------------------|\n");
+    printf("- Qual é o rendimento deste investimento?\n");
+    printf("|----------------------------------------|\n");
         scanf("%lf", &rendimento);
+        
+        system("clear");
+        
+        while (rendimento < 0) {
+            printf("|-----------------------------------------------------|\n");
+            printf("[!] Inválido [!], Qual é o rendimento do investimento?\n");
+            printf("|-----------------------------------------------------|\n");
+                scanf("%lf", &rendimento);
+                
+                system("clear");
+                
+                if (rendimento >= 0) {
+                    break;
+                }
+        }
+
         system("clear");
        
-    printf("Qual é o imposto sobre o investimento?\n");
+    printf("|---------------------------------------|\n");
+    printf("- Qual é o imposto sobre o investimento?\n");
+    printf("|---------------------------------------|\n");
         scanf("%lf", &imposto);
         system("clear");
+        
+        while (imposto < 0) {
+            printf("|-------------------------------------------------------|\n");
+            printf("[!] Inválido [!], Qual é o imposto sobre o investimento?\n");
+            printf("|-------------------------------------------------------|\n");
+                scanf("%lf", &imposto);
+                
+                if (imposto >= 0){
+                    break;
+                }
+                
+                system("clear");
+        }
 
     double taxaAnual = rendimento / 100.0;
     double taxaMensal = taxaAnual / 12.0;
@@ -104,13 +166,15 @@ void cdb(){
 
 
     if (cambio == 1) {
-
+        
         printf("|-------------------------------|");
         printf("\n* Por dia, esse dinheiro renderá; \n~> Bruto: R$%.2f\n~> Líquido: R$%.2f\n", brutoDiario, liquidoDiario);
         printf("\n* Por Mês, esse dinheiro renderá; \n~> Bruto: R$%.2f\n~> Líquido: R$%.2f\n", brutoMensal, liquidoMensal);
         printf("\n* Por Ano, esse dinheiro renderá; \n~> Bruto: R$%.2f\n~> Líquido: R$%.2f\n", brutoAnual, liquidoAnual);
         printf("|-------------------------------|\n\n");
-    }else {
+        
+    }
+    else {
 
         brutoAnual = brutoAnual * 51.4 / 100;
         brutoMensal = brutoMensal * 51.4 / 100;
