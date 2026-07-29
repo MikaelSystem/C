@@ -22,7 +22,7 @@ int main() {
         N1++;
     }
     
-    printf("%d",N);
+    printf("%d\n",N);
     printf("%d nota(s) de  R$ 100,00\n", N100);
     printf("%d nota(s) de  R$ 50,00\n", N50);
     printf("%d nota(s) de  R$ 20,00\n", N20);
@@ -31,6 +31,5 @@ int main() {
     printf("%d nota(s) de  R$ 2,00\n", N2);
     printf("%d nota(s) de  R$ 1,00\n", N1);
     
- 
     return 0;
 }
