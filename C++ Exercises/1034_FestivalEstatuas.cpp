@@ -1,13 +1,23 @@
 #include <iostream>
 #include <vector>
+using namespace std;
  
 int main() {
-    int T=0,MI=0;MF=0;
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int i=0,T=0,TB=0,MF=0,CC=0;
     
-    vector<int> MDS = {1,5,10.15};
+    vector<int> MDS;
+    
+    cin >> T;
     
     for (int i=0; i<T; i++){
-        cin << MI << MF;
+        cin >> TB >> MF;
+        
+        for (int j=0; j<TB; j++){
+            cin >> CC;
+            MDS.push_back(CC);
+        }
     }
 
     return 0;
